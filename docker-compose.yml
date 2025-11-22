@@ -1,7 +1,7 @@
 services:
   backend:
     # image: backend:latest
-    container_name: backend
+    # container_name: backend
     hostname: streaming-api
     build:
       context: ./backend/
@@ -14,8 +14,21 @@ services:
     command: nodemon start
     environment:
       NODE_ENV: development
+    # ports:
+    #   - 3000:3000
+    networks:
+      - app-network
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    restart: always
     ports:
-      - 3000:3000
+      - ${PORT}:${PORT}
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+    depends_on:
+      - backend
     networks:
       - app-network
 
