@@ -2,6 +2,7 @@ services:
   backend:
     # image: backend:latest
     container_name: backend
+    hostname: streaming-api
     build:
       context: ./backend/
       dockerfile: Dockerfile

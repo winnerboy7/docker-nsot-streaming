@@ -1,5 +1,5 @@
 #Stage 0: Base image
-FROM node:18-slim AS base
+FROM node:24-slim AS base
 WORKDIR /app
 COPY package*.json package-lock.json ./
 EXPOSE 3000
@@ -16,7 +16,7 @@ CMD ["nodemon", "start"]
 # CMD ["npm", "start"]
 
 #Stage 2: Production Application
-FROM node:18-slim AS production
+FROM node:24-slim AS production
 WORKDIR /app
 ENV NODE_ENV=production
 COPY . .
