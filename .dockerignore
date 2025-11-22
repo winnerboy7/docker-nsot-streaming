@@ -1,0 +1,15 @@
+# Version control
+.git
+.gitignore
+
+# Local dependencies
+node_modules # สำคัญมาก! ไม่ควร copy node_modules จากเครื่องเราเข้าไป
+npm-debug.log
+*.log
+
+# Development tools & OS specific
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store

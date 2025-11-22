@@ -1,0 +1,24 @@
+services:
+  backend:
+    # image: backend:latest
+    container_name: backend
+    build:
+      context: ./backend/
+      dockerfile: Dockerfile
+      target: development
+    restart: always
+    volumes:
+      # - ./www/etraining/_uploads/media/mp4:/app/videos
+      - ./app/videos:/app/videos
+    command: nodemon start
+    environment:
+      NODE_ENV: development
+    ports:
+      - 3000:3000
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    name: app-network
+    driver: bridge
