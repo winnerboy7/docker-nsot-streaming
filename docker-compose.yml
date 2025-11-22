@@ -6,16 +6,15 @@ services:
     build:
       context: ./backend/
       dockerfile: Dockerfile
-      target: development
+      target: ${NODE_ENV}
     restart: always
     volumes:
-      # - ./www/etraining/_uploads/media/mp4:/app/videos
       - ./app/videos:/app/videos
-    command: nodemon start
+    # command: nodemon start
     environment:
-      NODE_ENV: development
+      NODE_ENV: ${NODE_ENV}
     # ports:
-    #   - 3000:3000
+    #   - ${PORT}:3000
     networks:
       - app-network
 
@@ -24,7 +23,9 @@ services:
     container_name: nginx
     restart: always
     ports:
-      - ${PORT}:${PORT}
+      - 3000:3000
+      - 80:80
+      - 443:443
     volumes:
       - ./nginx/conf.d:/etc/nginx/conf.d
     depends_on:

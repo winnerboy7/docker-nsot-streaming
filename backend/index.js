@@ -3,6 +3,7 @@ const os = require("os")
 const app = express()
 const fs = require("fs")
 const cors = require("cors")
+require("dotenv").config()
 
 app.use(
   cors({
@@ -14,7 +15,9 @@ app.use(
 app.get("/", (req, res) => {
   res.json({
     message: "Hello World! Chaimongkol Khamkom (God)",
-    hostname: `${os.hostname()}`,
+    hostname: `${process.env.SERVER_NAME}`,
+    id: `${os.hostname()}`,
+    OS: `${os.platform()} ${os.release()}`,
     CPU: `${os.cpus()[0].model}`,
   })
 })
